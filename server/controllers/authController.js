@@ -1,5 +1,5 @@
 const User = require('../models/userModel')
-const createError = require('../utils/apperror');
+const createError = require('../utils/appError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET || 'secretkey123';
