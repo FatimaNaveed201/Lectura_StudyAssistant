@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Lectura</title>
+  <link rel="icon" type="image/png" href="images/signupbot.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Nav header always on top -->
+  <header class="hero-header">
+    <div class="header-left">
+      <img src="images/lecturalogoo.png" alt="Lectura Logo" class="logo-img">
+    </div>
+    <div class="header-right"><button onclick="logout()">Logout</button></div>
+  </header>
+
+  <!-- Hero background + Welcome Text -->
+  <section class="hero-section hero-gif">
+    <h1 id="welcomeText">Hello!</h1>
+    <canvas id="sparkleCanvas"></canvas>
+  </section>
+
+
+  <main class="main-content">
+    <section class="upload-section">
+      <button onclick="goToUpload()">Upload Lecture Document</button>
+    </section>
+
+    <section class="saved-notes">
+      <h3>Saved Notes</h3>
+      <ul id="notesList">
+        <!-- Notes will be dynamically inserted here -->
+      </ul>
+    </section>
+  </main>
+
+  <!-- Sparkle effect -->
+  <canvas id="sparkleCanvas"></canvas>
+  <script src="main.js"></script>
+  <script src="sparkle.js"></script>
+</body>
+</html>

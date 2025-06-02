@@ -1,0 +1,213 @@
+/* Same styles as login.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+
+
+.login-bot-img {
+  position: fixed;
+  bottom: 30px;
+  right: 100px;
+  width: 280px;
+  height: auto;
+  z-index: 5;
+  transition: transform 0.3s ease;
+  animation: floatBot 3s ease-in-out infinite;
+}
+
+.login-bot-img:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+@keyframes floatBot {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/images/signupbg.png') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+
+/* When fading out */
+body.fade-out {
+  opacity: 0;
+}
+
+.glass-container {
+    position: relative;
+    overflow: hidden; 
+    width: 520px;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(71, 125, 145, 0.115);
+    border: 1px solid rgba(33, 33, 116, 0.18);
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.glass-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-120%) skewX(-15deg); 
+    background: rgba(255, 255, 255, 0.3);
+    filter: blur(2px);
+    pointer-events: none;
+    transition: transform 0.6s ease;
+    z-index: 2;
+}
+
+.glass-container:hover::before {
+    transform: translateX(120%) skewX(-15deg); 
+}
+
+.glass-container h1 {
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.input-field {
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.input-field input::placeholder {
+    color: #585768;
+    opacity: 0.7;
+}
+
+.input-field input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: rgba(66, 86, 95, 0.8);
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-field input:focus + label,
+.input-field input:valid + label {
+    top: 0;
+    left: 15px;
+    font-size: 12px;
+    color: #2c3e50;
+    background: rgb(147, 185, 218);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    background: rgb(113, 152, 187);
+    color: #213760;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn:hover {
+    background: #213760;
+    color: rgb(113, 152, 187);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    background: #ff4d4d;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    z-index: 9999;
+}
+
+.alert.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.register-link a {
+    color: #336699;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Responsive tweaks (same as login.css) */
+@media (max-width: 1024px) {
+  .glass-container { width: 90%; padding: 50px 30px; }
+  .glass-container h1 { font-size: 2.2rem; }
+  .login-bot-img { width: 160px; bottom: 10px; left: 10px; }
+}
+
+@media (max-width: 767px) {
+  .glass-container { width: 95%; padding: 60px 35px; }
+  .glass-container h1 { font-size: 2.5rem; }
+  .login-bot-img { width: 120px; bottom: 8px; left: 8px; }
+}

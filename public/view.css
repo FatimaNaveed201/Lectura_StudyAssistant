@@ -1,0 +1,305 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+.viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0066cc;
+  padding: 10px 20px;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-left {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.header-right button {
+  background-color: #ffffff;
+  color: #0066cc;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.header-right button:hover {
+  background-color: #f0f0f0;
+}
+
+.lecture-container {
+  padding: 30px 50px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #004080;
+}
+
+.lecture-section {
+  margin-bottom: 40px;
+}
+
+.lecture-section h2 {
+  color: #0059b3;
+  border-bottom: 2px solid #dce6f0;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.lecture-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  min-height: 100px;
+}
+
+/* Flashcards */
+.flashcards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flashcard {
+  width: 200px;
+  height: 130px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flashcard.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card-front {
+  background-color: #e0f0ff;
+  font-weight: bold;
+}
+
+.card-back {
+  background-color: #fff7e6;
+  transform: rotateY(180deg);
+}
+
+/* Quiz */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quiz-question {
+  background-color: #ffffff;
+  border-left: 4px solid #0073e6;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.quiz-answer {
+  margin-top: 8px;
+  color: #333;
+  font-style: italic;
+  background: #f5faff;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Raw HTML Fallback */
+.raw-html p {
+  margin: 10px 0;
+}
+
+.raw-html ul, .raw-html ol {
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.raw-html li {
+  margin: 5px 0;
+  list-style-type: disc;
+}
+
+.raw-html strong {
+  color: #004080;
+}
+
+.raw-html div {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f5faff;
+  border-left: 4px solid #0073e6;
+  border-radius: 5px;
+}
+
+/* Bigger UI for smaller screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 1.1rem;
+  }
+
+  .viewer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    font-size: 1.3rem;
+  }
+
+  .header-left {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .header-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .header-right button {
+    font-size: 1.2rem;
+    padding: 12px 18px;
+    min-width: 140px;
+  }
+
+  .lecture-container {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+
+  .lecture-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .lecture-box {
+    font-size: 1.2rem;
+    padding: 22px;
+  }
+
+  .flashcards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flashcard {
+    width: 95%;
+    height: 200px;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.4rem;
+    padding: 18px;
+  }
+
+  .quiz-question {
+    font-size: 1.3rem;
+    padding: 20px;
+  }
+
+  .quiz-answer {
+    font-size: 1.2rem;
+    padding: 14px;
+  }
+
+  .raw-html p,
+  .raw-html li,
+  .raw-html div {
+    font-size: 1.2rem;
+  }
+}
+
+/* Tiny screen fix (phones) */
+@media (max-width: 480px) {
+  .viewer-header {
+    font-size: 1.4rem;
+    padding: 20px;
+  }
+
+  .header-left {
+    font-size: 2.2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .header-right {
+    justify-content: center;
+  }
+
+  .header-right button {
+    font-size: 1.3rem;
+    padding: 14px 20px;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .lecture-section h2 {
+    font-size: 2rem;
+  }
+
+  .lecture-box {
+    font-size: 1.3rem;
+    padding: 24px;
+  }
+
+  .flashcard {
+    height: 220px;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.5rem;
+  }
+
+  .quiz-question {
+    font-size: 1.4rem;
+  }
+
+  .quiz-answer {
+    font-size: 1.3rem;
+  }
+}

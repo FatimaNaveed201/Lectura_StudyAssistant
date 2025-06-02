@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/signupbot.png">
+  <title>Saved Lectures</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px 50px;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      background-image: url("images/bodybg.png");
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center center;
+      color: #34495e;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #4a90e2, #357ABD);
+      padding: 12px 25px;
+      border-radius: 12px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(53, 122, 189, 0.4);
+      margin-bottom: 35px;
+      width: 100%;
+      max-width: 900px;
+      user-select: none;
+    }
+
+    button {
+      background: #ffffffcc;
+      border: 2px solid #357ABD;
+      padding: 9px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #357ABD;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(53, 122, 189, 0.25);
+      margin: 0 5px;
+    }
+
+    button:hover {
+      background: #357ABD;
+      color: white;
+      box-shadow: 0 4px 16px rgba(53, 122, 189, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 2.8em;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .section h2 {
+      background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      font-size: 1.7em;
+      margin-bottom: 30px;
+    }
+
+    #summaryBox {
+      background: #ffffffcc;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), inset 0 0 15px #a1c4fd44;
+      min-height: 130px;
+      line-height: 1.7;
+      font-size: 1.05em;
+      color: #2c3e50;
+      user-select: text;
+    }
+
+    #flashcardsScrollContainer {
+      width: 100%;
+      max-width: 900px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    .flashcard {
+      width: 100%;
+      max-width: 750px;
+      height: 280px;
+      border-radius: 25px;
+      box-shadow: 10px 6px 12px rgb(78, 58, 134);
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 3px solid;
+      border-image-slice: 1;
+      border-radius: 10px;
+      box-sizing: border-box;
+      user-select: text;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      padding: 20px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    
+
+    #controls {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 700px) {
+      .flashcard {
+        max-width: 100%;
+        height: 240px;
+        padding: 15px;
+      }
+      .flashcard .front,
+      .flashcard .back {
+        font-size: 1em;
+      }
+    }
+
+    @keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+    .flashcard {
+    width: 100%;
+    max-width: 750px;
+    height: 280px;
+    border-radius: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    box-sizing: border-box;
+    user-select: text;
+    animation: fadeInSlide 0.4s ease;
+    }
+
+    .flashcard > .front {
+    background: linear-gradient(135deg, #d4fcf9, #e1d8ff);
+    font-weight: 700;
+    font-size: 1.3em;
+    color: #1e3a8a;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: inset 0 0 12px rgba(100, 100, 255, 0.1);
+    }
+
+    .flashcard > .back {
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    transform: rotateY(180deg);
+    font-size: 1.1em;
+    font-weight: bolder;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    line-height: 1.4;
+    color: #2c3e50;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: inset 0 0 12px rgba(255, 150, 200, 0.1);
+    }
+
+    
+/* Bigger UI for smaller screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 1.1rem;
+  }
+
+  .viewer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+    font-size: 1.3rem;
+  }
+
+  .header-left {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .header-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .header-right button {
+    font-size: 1.2rem;
+    padding: 12px 18px;
+    min-width: 140px;
+  }
+
+  .lecture-container {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+
+  .lecture-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .lecture-box {
+    font-size: 1.2rem;
+    padding: 22px;
+  }
+
+  .flashcards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flashcard {
+    width: 95%;
+    height: 200px;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.4rem;
+    padding: 18px;
+  }
+
+  .quiz-question {
+    font-size: 1.3rem;
+    padding: 20px;
+  }
+
+  .quiz-answer {
+    font-size: 1.2rem;
+    padding: 14px;
+  }
+
+  .raw-html p,
+  .raw-html li,
+  .raw-html div {
+    font-size: 1.2rem;
+  }
+}
+
+/* Tiny screen fix (phones) */
+@media (max-width: 480px) {
+  .viewer-header {
+    font-size: 1.4rem;
+    padding: 20px;
+  }
+
+  .header-left {
+    font-size: 2.2rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .header-right {
+    justify-content: center;
+  }
+
+  .header-right button {
+    font-size: 1.3rem;
+    padding: 14px 20px;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .lecture-section h2 {
+    font-size: 2rem;
+  }
+
+  .lecture-box {
+    font-size: 1.3rem;
+    padding: 24px;
+  }
+
+  .flashcard {
+    height: 220px;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.5rem;
+  }
+
+  .quiz-question {
+    font-size: 1.4rem;
+  }
+
+  .quiz-answer {
+    font-size: 1.3rem;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div>📖 Luctura</div>
+    <div><button onclick="goHome()">🏠 Home</button></div>
+  </header>
+
+  <h1 id="lectureTitle">Lecture Title</h1>
+
+  <div class="section">
+    <h2>Summary</h2>
+    <div id="summaryBox">Loading summary...</div>
+  </div>
+
+  <div class="section">
+    <h2>Flashcards</h2>
+    <div id="flashcardsScrollContainer"></div>
+    <div id="controls">
+      <button id="prevBtn">Previous Card</button>
+      <button id="revealBtn">Reveal Answer</button>
+      <button id="nextBtn">Next Card</button>
+    </div>
+  </div>
+
+  <script>
+    function goHome() {
+      window.location.href = "home.html";
+    }
+
+    let flashcards = [];
+    let currentSelectedIndex = 0;
+
+    window.onload = () => {
+      const rawLecture = localStorage.getItem("currentLecture");
+      if (!rawLecture) return goHome();
+      let lecture = JSON.parse(rawLecture || '{}');
+      document.getElementById('lectureTitle').textContent = lecture.name || "Lecture Title";
+      document.getElementById('summaryBox').innerHTML = lecture.content?.summary || "<p>No summary available.</p>";
+      const rawFlashcards = lecture.content?.flashcards;
+
+      if (Array.isArray(rawFlashcards)) {
+        flashcards = rawFlashcards.filter((_, i) => i !== 5).slice(0, 5).map(card => ({
+          question: card.question || card.q || "No question",
+          answer: card.answer || card.a || "No answer"
+        }));
+      } else if (typeof rawFlashcards === 'string') {
+        flashcards = parseFlashcardsFromHTML(rawFlashcards);
+      }
+
+      if (flashcards.length === 0) return;
+      renderFlashcard(currentSelectedIndex);
+
+      document.getElementById('revealBtn').addEventListener('click', () => {
+        const card = document.querySelector('.flashcard');
+        if (card) card.classList.toggle('flipped');
+      });
+
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        currentSelectedIndex = (currentSelectedIndex + 1) % flashcards.length;
+        renderFlashcard(currentSelectedIndex);
+      });
+
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        currentSelectedIndex = (currentSelectedIndex - 1 + flashcards.length) % flashcards.length;
+        renderFlashcard(currentSelectedIndex);
+      });
+    };
+
+    function parseFlashcardsFromHTML(html) {
+      const container = document.createElement('div');
+      container.innerHTML = html;
+      return Array.from(container.querySelectorAll('.flashcard')).map(div => ({
+        question: div.querySelector('.front')?.textContent.trim() || 'No question',
+        answer: div.querySelector('.back')?.textContent.trim() || 'No answer'
+      })).slice(0, 5);
+    }
+
+    function renderFlashcard(index) {
+    const container = document.getElementById('flashcardsScrollContainer');
+
+    const oldCard = container.querySelector('.flashcard');
+    if (oldCard) {
+        oldCard.classList.add('fade-out');
+        setTimeout(() => {
+        container.removeChild(oldCard);
+        addNewCard();
+        }, 250);
+    } else {
+        addNewCard();
+    }
+
+    function addNewCard() {
+        const cardData = flashcards[index];
+        const card = document.createElement('div');
+        card.className = 'flashcard';
+        card.dataset.index = index;
+
+        const front = document.createElement('div');
+        front.className = 'front';
+        front.textContent = "Q: " + cardData.question;
+
+        const back = document.createElement('div');
+        back.className = 'back';
+        back.textContent = "A: " + cardData.answer;
+
+        card.appendChild(front);
+        card.appendChild(back);
+
+        card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+        });
+
+        container.appendChild(card);
+    }
+    }
+
+  </script>
+</body>
+</html>

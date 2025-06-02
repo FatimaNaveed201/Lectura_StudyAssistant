@@ -1,0 +1,501 @@
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px 50px;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      color: #34495e;
+      background-image: url("images/bodybg.png");
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center center;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+#lectureFile {
+  display: none;
+  display: hidden;
+}
+
+
+/* Fancy Custom Upload Label */
+.custom-upload {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #ffffffcc;
+  color: #357ABD;
+  font-weight: 600;
+  border: 2px solid #357ABD;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 8px rgba(53, 122, 189, 0.25);
+  margin-bottom: 15px;
+}
+
+.custom-upload:hover {
+  background-color: #357ABD;
+  color: white;
+}
+
+/* Keep this for upload button */
+button[onclick="uploadLecture()"] {
+  background-color: #34a853;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 25px;
+}
+button[onclick="uploadLecture()"]:hover {
+  background-color: #2c8f46;
+}
+
+/* Hero section */
+.hero-gif {
+  width: 100%;
+  max-width: 1000px; 
+  min-height: 436px;
+  height: auto;
+  background-image: url("images/uploadbg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#sparkleCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#welcomeText {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 40%;
+  transform: translate(-50%, -50%);
+  color: rgb(34, 56, 135);
+  font-size: 2.5rem;
+  text-align: center;
+  z-index: 2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #4a90e2, #357ABD);
+      padding: 12px 25px;
+      border-radius: 12px;
+      color: white;
+      box-shadow: 0 4px 12px rgba(53, 122, 189, 0.4);
+      margin-bottom: 35px;
+      width: 100%;
+      max-width: 900px;
+      user-select: none;
+    }
+
+button {
+      background: #ffffffcc;
+      border: 2px solid #357ABD;
+      padding: 9px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #357ABD;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 2px 8px rgba(53, 122, 189, 0.25);
+      margin: 0 5px;
+    }
+
+button:hover {
+      background: #357ABD;
+      color: white;
+      box-shadow: 0 4px 16px rgba(53, 122, 189, 0.5);
+    }
+
+.tab-bar button.active-tab {
+  background-color: #2f73c0; /* Slightly darker blue */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 2.8em;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 900px;
+    }
+
+.section {
+      margin-bottom: 50px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+/* Tab Bar */
+.tab-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.tab-bar button {
+  padding: 10px 20px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.tab-bar button:hover {
+  background: #357ABD;
+}
+
+button[onclick="uploadLecture()"] {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px 20px;
+  background-color: #34a853;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[onclick="uploadLecture()"]:hover {
+  background-color: #2c8f46;
+}
+
+/* Tabs */
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+/* Summary Box */
+.summary-box {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  text-align: justify;
+  word-wrap: break-word;
+  border-top: 6px solid #4a90e2;
+
+}
+
+
+.flashcard-section {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 30px 15px;
+  scroll-snap-type: x mandatory;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Redesigned Flashcard */
+
+.flashcard * {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+}
+
+.flashcard {
+  perspective: 1200px;
+  width: 100%;
+  min-width: 800px;
+  height: auto;
+  min-height: 320px;
+  border-radius: 25px;
+  cursor: pointer;
+  position: relative;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  background: transparent;
+  margin-bottom: 15px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  border-radius: 25px;
+}
+
+.flashcard.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  min-height: 320px;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  border: 3px solid #6858ab;
+  box-shadow: 10 10px 12px rgba(72, 68, 130, 0.677);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 40px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
+  white-space: normal; 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Front of card */
+.card-front {
+  background: linear-gradient(135deg, #ffffff, #f4f7fa);
+  border-left: 6px solid #4a90e2;
+  color: #1e3a8a;
+}
+
+/* Back of card */
+.card-back {
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  color: #2c3e50;
+  transform: rotateY(180deg);
+}
+
+/* Quiz Section */
+.quiz-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-card {
+  background: linear-gradient(135deg, #ffffff, #f4f7fa);
+  width: 100%;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #4a90e2;
+}
+
+.quiz-question {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #34495e;
+}
+
+.quiz-option {
+  display: block;
+  margin-bottom: 12px;  
+  padding: 8px 12px;     
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 4px;
+  background: #e3ecf5;
+  color: #2c3e50;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.quiz-option:hover {
+  background: #cddff5;
+  color: #1e3a8a;
+  transform: scale(1.02);
+}
+
+.quiz-option.correct {
+  background: #d0f0c0;
+  color: #256029;
+  font-weight: bold;
+  animation: bounce 0.4s ease;
+}
+
+.quiz-option.incorrect {
+  background: #f8c6c6;
+  color: #a02b2b;
+  font-weight: bold;
+  animation: shake 0.4s ease;
+}
+
+
+.retry-button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #ff9800;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #e68900;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.05); }
+  60% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #5a8dee;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------ */
+/* Nav/Header : Tablets (max-width: 1024px) */
+/* ------------------------------------ */
+@media (max-width: 1024px) {
+  .viewer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+  
+
+  .header-left {
+    font-size: 2.2rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  .header-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .header-right button {
+    font-size: 1.3rem;
+    padding: 14px 22px;
+    width: auto;
+    min-width: 140px;
+  }
+}
+
+/* ------------------------------------ */
+/* Nav/Header: Phones (max-width: 767px) */
+/* ------------------------------------ */
+@media (max-width: 767px) {
+  .viewer-header {
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.6rem;
+    padding: 26px 18px;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .header-left {
+    font-size: 2.4rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .header-right {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-right button {
+    font-size: 1.4rem;
+    padding: 18px 28px;
+    width: 100%;
+    max-width: 320px;
+  }
+}

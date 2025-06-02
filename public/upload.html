@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/signupbot.png">
+  <title>Upload Lecture</title>
+  <link rel="stylesheet" href="upload.css" />
+
+</head>
+<body>
+  <header>
+    <div>📖 Luctura</div>
+    <div><button onclick="goHome()">🏠 Home</button></div>
+  </header>
+  
+  <section class="hero-section hero-gif">
+    <h1 id="welcomeText">Upload your Lecture to generate notes!</h1>
+    <canvas id="sparkleCanvas"></canvas>
+  </section>
+
+  <div class="tab-bar">
+    <button data-tab="summary" onclick="showTab('summary')" id="btn-summary">Summary</button>
+    <button data-tab="flashcards" onclick="showTab('flashcards')" id="btn-flashcards">Flashcards</button>
+    <button data-tab="quiz" onclick="showTab('quiz')" id="btn-quiz">Quiz</button>
+    <button onclick="saveNotes()">💾 Save Notes</button>
+  </div>
+
+  <label for="lectureFile" class="custom-upload">Choose File</label>
+  <input type="file" id="lectureFile" accept=".pdf" />
+  <button onclick="uploadLecture()">Upload</button>
+
+
+  <div id="summary" class="tab">
+    <div id="summaryBox">Summary will appear here...</div>
+  </div>
+
+  <div id="flashcards" class="tab">
+    <div id="flashcardsBox">Flashcards will appear here...</div>
+  </div>
+
+  <div id="quiz" class="tab">
+    <div id="quizBox">Quiz will appear here...</div>
+  </div>
+
+  <div id="loader" class="loader-overlay" style="display: none;">
+    <div class="loader-spinner"></div>
+    <p>Processing your lecture, please wait...</p>
+  </div>
+
+
+  <script src="upload.js"></script>
+  <script src="sparkle.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Lectura</title>
+  <link rel="icon" type="image/png" href="images/signupbot.png">
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="glass-container">
+    <h1>Login</h1>
+    <form id="loginForm">
+  <div class="input-field">
+    <input type="email" id="email" name="email" required />
+    <label for="email">Email</label>
+</div>
+
+    <div class="input-field">
+    <input type="password" id="password" name="password" required />
+    <label for="password">Password</label>
+    </div>
+  
+  <div class="input-field">
+    <button type="submit" class="login-btn">Log In</button>
+  </div>
+</form>
+    <p class="register-link">Don't have an account? <a href="register.html">Register here</a></p>
+    <p id="responseMsg"></p>
+  </div>
+
+  <script src="login.js"></script>
+
+  <div id="alertBox" class="alert">User not found</div>
+
+  <img src="/images/loginbot.png" alt="Login Bot" class="login-bot-img" />
+
+
+</body>
+</html>
