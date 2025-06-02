@@ -249,7 +249,7 @@ h1 {
   }
 }
 
-/* Tiny screen fix (phones) */
+/* Tiny screen (phones) */
 @media (max-width: 480px) {
   .viewer-header {
     font-size: 1.4rem;

@@ -1,11 +1,11 @@
-const Note = require('../models/noteModel'); // ✅ make sure the path matches your project structure
+const Note = require('../models/noteModel'); 
 
 exports.saveNote = async (req, res) => {
   try {
     const userId = req.user.id; // from auth middleware
     const { name, timestamp, content } = req.body;
 
-    // Optional: Prevent duplicates for the same user and note name
+   
     await Note.deleteOne({ user: userId, name });
 
     const newNote = new Note({ user: userId, name, timestamp, content });

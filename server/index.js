@@ -8,11 +8,9 @@
 
   const noteRoutes = require('./routes/noteRoute');
   
-
   const app = express();
 
   const lectureRoute = require('./routes/lectureRoute');
-
 
   // Middleware
   app.use(cors());
