@@ -19,6 +19,10 @@ body {
   padding: 0 1rem;
 }
 
+body,html {
+  overflow-x: hidden;
+}
+
 /* Hero section */
 .hero-gif {
   width: 100%;
@@ -367,5 +371,45 @@ h1, h3 {
   .saved-notes li button.delete-note-btn {
     font-size: 1.8rem;
     padding: 10px 24px;
+  }
+}
+
+/* Footer styling */
+.site-footer {
+  text-align: center;
+  padding: 10px 20px;
+  background-color: transparent;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Line */
+.footer-line {
+  border: none;
+  height: 1px;
+  background: radial-gradient(circle, rgba(47, 28, 129, 0.2) 0%, rgba(0,0,0,0) 80%);
+  margin: 10px auto;
+  width: 90%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Text */
+.footer-text {
+  font-size: 14px;
+  color: #3b408f; /* dark grey for visibility on light blue */
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .footer-text {
+    font-size: 12px;
+  }
+
+  .footer-line {
+    width: 95%;
   }
 }

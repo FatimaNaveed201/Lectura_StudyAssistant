@@ -238,7 +238,6 @@ button[onclick="uploadLecture()"]:hover {
 .flashcard {
   perspective: 1200px;
   width: 100%;
-  min-width: 800px;
   height: auto;
   min-height: 320px;
   border-radius: 25px;
@@ -432,6 +431,13 @@ button[onclick="uploadLecture()"]:hover {
   }
 }
 
+@media (min-width: 1024px) {
+  .flashcard {
+    min-width: 800px;
+    max-width: 100%;
+  }
+}
+
 /* ------------------------------------ */
 /* Nav/Header : Tablets (max-width: 1024px) */
 /* ------------------------------------ */
@@ -463,6 +469,13 @@ button[onclick="uploadLecture()"]:hover {
     padding: 14px 22px;
     width: auto;
     min-width: 140px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .flashcard {
+    min-width: 600px;
+    max-width: 90%;
   }
 }
 
@@ -498,4 +511,49 @@ button[onclick="uploadLecture()"]:hover {
     width: 100%;
     max-width: 320px;
   }
+
+  .flashcard {
+    min-width: 90vw;
+    max-width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .flashcard-section {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  }
+
+  /* Fix padding/margin for quiz section */
+  .quiz-section {
+    padding: 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quiz-card {
+    width: 100%;
+    min-width: 300px;
+    padding: 15px;
+    padding-right: 15px;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+  }
+
+  /* Tab Bar - make buttons stack or fit small screens */
+  .tab-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .tab-bar button {
+    flex: 1 1 auto;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
 }
